@@ -1,2 +1,3 @@
 # INF3_PRAK
-Source code for ##INFORMATIK 3 PROJEKT## by **SIMON & MATTIS**
+#INFORMATIK 3 PROJEKT
+Source code for **INFORMATIK 3 PROJEKT** by **SIMON & MATTIS**
