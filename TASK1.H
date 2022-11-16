@@ -35,7 +35,6 @@ using namespace std;
 namespace TASK1{
 
 
-
 /**
  *
  * \var const string SYMBOLS

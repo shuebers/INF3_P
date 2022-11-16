@@ -78,7 +78,7 @@ void demoTASK1_01(){
 	TASK1::BlackBoxSafe bs(4,4);
 	cout << bs.pwd_ << endl;
 
-	cout << bs.input("AAAA") << endl;
+	cout << bs.input("ABAB") << endl;
 
 	return;
 }
