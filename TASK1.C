@@ -15,6 +15,7 @@
 namespace TASK1{
 
 
+
 string BlackBoxUnsafe::getSymbols(){
 	return string(charSymbArray_);
 };
