@@ -1,2 +1,3 @@
-# INF3_PRAK
-Source code for practicals WS2019/2020
+# INF3_P
+## INFORMATIK 3 PROJEKT
+Source code for **INFORMATIK 3 PROJEKT** by **SIMON & MATTIS**
