@@ -51,6 +51,19 @@ string BlackBoxUnsafe::randomPwd(int l){
 	return pwd_;
 }
 
+BlackBoxSafe::BlackBoxSafe(int pwdLength, int symbSetSize) : BlackBoxUnsafe(pwdLength, symbSetSize){
+	pwd_ = sha256(pwd_);
+	return;
+}
+
+string BlackBoxSafe::input(string strPwd){
+	string shastrPwd = sha256(strPwd);
+	if(shastrPwd.compare(pwd_) == 0){
+			return string("ACCESS ACCEPTED");
+		}
+		return string("ACCESS DENIED");
+}
+
 void demoTASK1_00(){
 	string pwd("meinpassword");
 	cout << "pwd   : " << pwd << endl;
@@ -62,10 +75,10 @@ void demoTASK1_00(){
 }
 
 void demoTASK1_01(){
-	TASK1::BlackBoxUnsafe bs(4,4);
+	TASK1::BlackBoxSafe bs(4,4);
 	cout << bs.pwd_ << endl;
 
-	cout << bs.input(bs.pwd_) << endl;
+	cout << bs.input("AAAA") << endl;
 
 	return;
 }
