@@ -20,6 +20,7 @@
 #include "SIMPLESOCKET.H"
 //using namespace std;
 #include <iostream>
+#include <sstream>
 #include "TASK1.H"
 
 class myServer : public TCPserver{
@@ -30,10 +31,25 @@ public:
 	};
 	string myResponse(string input)
 	{
+		int pwdLength;
+		int symbSetSize;
+		string ReturnValue;
+		stringstream sr;
 		std::cout << "Triggered the myServer" << std::endl;
-		return string("Returnedvalue");
-	}
 
+		if(input.compare(0,8,"GENERATE") == 0){
+			sscanf(input.c_str(), "GENERATE[%i,%i]", &pwdLength,&symbSetSize);
+			sr << "Passwortlänge:" << pwdLength << ";" << "Symbolzahl:" << symbSetSize;
+			ReturnValue = sr.str;
+		}
+		/*else if(input == "2"){
+			ReturnValue = "No";
+		}*/
+		else{
+			ReturnValue = "Error";
+		}
+		return ReturnValue;
+	}
 };
 
 

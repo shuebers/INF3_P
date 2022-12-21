@@ -92,7 +92,7 @@ void demoTASK1_01(){
 void demoTASK1_02(){
 	TASK1::BlackBoxSafe bs(6,6);
 	/* For understanding
-	-> Creating object balckboxsafe bs with password lenght of 4 and size of password array of 4
+	-> Creating object Blackboxsafe bs with password length of 6 and size of password array of 6
 	-> Creates random password in Blackbockunsafe end stores it in pwd_
 	-> encrypts the password via SHA256 in pwd_
 	*/
