@@ -31,6 +31,7 @@ BlackBoxUnsafe::BlackBoxUnsafe(int pwdLength, int symbSetSize){
 	strncpy(charSymbArray_, SYMBOLS.c_str(), lengthSymbArray_);
 	// create and save random password
 	pwd_ = this->randomPwd(pwdLength);
+	//cout << "Generated password:" << pwd_ << endl; //Mattis
 	return;
 }
 
@@ -77,13 +78,41 @@ void demoTASK1_00(){
 
 void demoTASK1_01(){
 	TASK1::BlackBoxSafe bs(4,4);
-	cout << bs.pwd_ << endl;
+	/* For understanding
+	-> Creating object balckboxsafe bs with password lenght of 4 and size of password array of 4
+	-> Creates random password in Blackbockunsafe end stores it in pwd_
+	-> encrypts the password via SHA256 in pwd_
+	*/
+	cout << bs.pwd_ << endl; //Print out encrypted password
 
-	cout << bs.input("ABAB") << endl;
-
+	cout << bs.input("ABAB") << endl; //compares passwords in SHA256
 	return;
 }
 
+void demoTASK1_02(){
+	TASK1::BlackBoxSafe bs(6,6);
+	/* For understanding
+	-> Creating object balckboxsafe bs with password lenght of 4 and size of password array of 4
+	-> Creates random password in Blackbockunsafe end stores it in pwd_
+	-> encrypts the password via SHA256 in pwd_
+	*/
+	cout << bs.pwd_ << endl; //Print out encrypted password
+
+	//cout << bs.input("ABAB") << endl; //compares passwords in SHA256
+
+	bool solved = 0; //Mattis
+	int counter = 0; //Mattis
+	while (solved == 0 ){ //Mattis	//Compares passwords until match
+		TASK1::BlackBoxUnsafe bu(6,6); //Mattis //Generates random character password
+		counter ++; //Mattis
+		if (bs.input(bu.pwd_) == string("ACCESS ACCEPTED")){ //Mattis //Compares random characters to password until it matches
+			cout << bs.input(bu.pwd_) << ", Password:" << bu.pwd_ << ", Amount of Tries:" << counter << endl; //Mattis //Show password
+			solved = 1; // Mattis //Stop loops
+		}
+	}
+
+	return;
+}
 }
 
 

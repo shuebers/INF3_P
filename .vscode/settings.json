@@ -1,6 +1,16 @@
 {
     "files.associations": {
         "main.C": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "SIMPLESOCKET.C": "cpp",
+        "server.C": "cpp",
+        "SHA256.C": "cpp",
+        "TASK1.C": "cpp",
+        "SHA256.H": "cpp",
+        "mainTest.C": "cpp",
+        "client.C": "cpp",
+        "SIMPLESOCKET.H": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

@@ -126,6 +126,11 @@ void demoTASK1_00();
  */
 void demoTASK1_01();
 
+/**
+ * Mattis solution to bruteforce password
+ * 
+ */
+void demoTASK1_02();
 } // end namespace TASK1
 
 

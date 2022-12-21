@@ -16,11 +16,34 @@
 #include <sys/socket.h> // for socket creation
 #include <netinet/in.h> //contains constants and structures needed for internet domain addresses
 
+
 #include "SIMPLESOCKET.H"
+//using namespace std;
+#include <iostream>
+#include "TASK1.H"
+
+class myServer : public TCPserver{
+public:
+	myServer(int port , int size) : TCPserver(port, size)
+	{
+		;
+	};
+	string myResponse(string input)
+	{
+		std::cout << "Triggered the myServer" << std::endl;
+		return string("Returnedvalue");
+	}
+
+};
 
 
 int main(){
 	srand(time(nullptr));
-	TCPserver srv(2022,25);
-	srv.run();
+	myServer ms(2022, 25);
+	ms.run();
+
+	//TASK1::BlackBoxUnsafe bs(4,4);
+	//std::cout << bs.pwd_ << std::endl;
+	//TCPserver srv(2022,25);
+	//srv.run();
 }
