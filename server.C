@@ -18,8 +18,9 @@
 
 
 #include "SIMPLESOCKET.H"
-//using namespace std;
+using namespace std;
 #include <iostream>
+#include <string>
 #include <sstream>
 #include "TASK1.H"
 
@@ -31,16 +32,16 @@ public:
 	};
 	string myResponse(string input)
 	{
-		int pwdLength;
-		int symbSetSize;
+		int serverpwdLength;
+		int serversymbSetSize;
 		string ReturnValue;
-		stringstream sr;
+		stringstream serverResponse;
 		std::cout << "Triggered the myServer" << std::endl;
 
 		if(input.compare(0,8,"GENERATE") == 0){
-			sscanf(input.c_str(), "GENERATE[%i,%i]", &pwdLength,&symbSetSize);
-			sr << "Passwortlänge:" << pwdLength << ";" << "Symbolzahl:" << symbSetSize;
-			ReturnValue = sr.str;
+			sscanf(input.c_str(), "GENERATE[%i,%i]", &serverpwdLength,&serversymbSetSize);
+			serverResponse << "Passwort generiert.\nPasswortlänge: " << serverpwdLength << "\n" << "Symbolzahl: " << serversymbSetSize;
+			ReturnValue = serverResponse.str();
 		}
 		/*else if(input == "2"){
 			ReturnValue = "No";
