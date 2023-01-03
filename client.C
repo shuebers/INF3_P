@@ -48,8 +48,7 @@ int main() {
 			sleep(1);
 		}
 		else if(msg.compare(0,18,"Passwort generiert") == 0){
-
-			msg = "noch nicht implementiert";
+			msg = "CHECKPWDBBBB"; //First message(CHECKPWD) tells server to check pwd, every other Symbol is the PWD (here BBBB)
 
 			cout << "client sends:" << msg << endl;
 			c.sendData(msg);
