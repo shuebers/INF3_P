@@ -18,5 +18,8 @@
 * [X] Generate random encrypted password with sepcified lenght and characters
 * [X] Check if passwords match and send response back to client
 
+### General
+* [ ] Documentation
+
 #### Credits:
 Source code for **INFORMATIK 3 PROJEKT** by **SIMON & MATTIS**
