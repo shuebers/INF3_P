@@ -17,6 +17,7 @@
 * [X] Get responses from server
 * [X] Generate random encrypted password with sepcified lenght and characters
 * [X] Check if passwords match and send response back to client
+* [X] Delete current password
 
 ### General
 * [ ] Documentation
