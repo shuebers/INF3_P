@@ -24,6 +24,7 @@ int main() {
 	string SYMBOLS = "ABCDEFGHIJKLMNOPQRTSTUVWXYZabcdefghijklmopqrstuvwxyz0123456789";
 	int pwdLength = 4;
 	int symbSetSize = 5;
+	int counter = 0;
 	//connect to host
 	c.conn(host , 2022);
 
@@ -36,10 +37,11 @@ int main() {
 
 	for(int i=0; i<4; i++){
 
-		if(msg == "Server bereit"){
+		if(msg == "Server bereit" || msg.compare(0,14, "ACCESS ACCEPTED") == 0){
 
 			clientRequest << "GENERATE[" << pwdLength << "," << symbSetSize << "]";
 			msg = clientRequest.str();
+			clientRequest.str("");//Clearing the stringstream for further use
 
 			cout << "client sends:" << msg << endl;
 			c.sendData(msg);
@@ -47,13 +49,18 @@ int main() {
 			cout << "got response:" << msg << endl;
 			sleep(1);
 		}
-		else if(msg.compare(0,18,"Passwort generiert") == 0){
-			msg = "CHECKPWDBBBB"; //First message(CHECKPWD) tells server to check pwd, every other Symbol is the PWD (here BBBB)
+		else if(msg.compare(0,17,"Passwort generiert") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0){
+			TASK1::BlackBoxUnsafe Testpwd(pwdLength, symbSetSize);
+
+			clientRequest << "CHECKPWD" << Testpwd.pwd_;//First message(CHECKPWD) tells server to check pwd, every other Symbol is the PWD
+			msg = clientRequest.str();
+			clientRequest.str("");//Clearing the stringstream for further use
 
 			cout << "client sends:" << msg << endl;
 			c.sendData(msg);
 			msg = c.receive(128);
 			cout << "got response:" << msg << endl;
+			counter++;
 			sleep(1);
 		}
 		else{
