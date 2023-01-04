@@ -30,6 +30,11 @@
         "streambuf": "cpp",
         "system_error": "cpp",
         "type_traits": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "cmath": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp"
     }
 }
