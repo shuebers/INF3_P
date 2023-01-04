@@ -50,8 +50,8 @@ mainTest:	mainTest.o
 server:	server.o #Mattis added SHA256.o TASK1.o
 	$(CC) -o server server.o  SIMPLESOCKET.o SHA256.o TASK1.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
 
-client:	client.o
-	$(CC) -o client client.o SIMPLESOCKET.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
+client:	client.o #Mattis added SHA256.o TASK1.o
+	$(CC) -o client client.o SIMPLESOCKET.o SHA256.o TASK1.o -L/usr/lib/x86_64-linux-gnu -ldl -lstdc++  -std=c++11
 
 clean:
 	-rm -r -f   $(DEMOTARGET) *.o DOXYGENDOC  *.txt

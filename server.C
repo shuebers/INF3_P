@@ -55,6 +55,10 @@ public:
 			std::cout <<"Password read from string:" << tempstring << std::endl;
 			ReturnValue = password->input(tempstring);
 		}
+		else if(input == "DELETECURPWD"){
+			delete password;
+			ReturnValue = "Deleted password";
+		}
 		else{
 			ReturnValue = "Error";
 		}
