@@ -29,7 +29,7 @@ public:
 	
 	myServer(int port , int size) : TCPserver(port, size)
 	{
-
+		password = new TASK1::BlackBoxSafe(4, 4);
 	};
 	TASK1::BlackBoxSafe* password;
 	string myResponse(string input)
@@ -45,6 +45,7 @@ public:
 			sscanf(input.c_str(), "GENERATE[%i,%i]", &serverpwdLength,&serversymbSetSize);
 			serverResponse << "Passwort generiert.\nPasswortlänge: " << serverpwdLength << "\n" << "Symbolzahl: " << serversymbSetSize;
 			ReturnValue = serverResponse.str();
+			delete password;
 			password = new TASK1::BlackBoxSafe(serverpwdLength, serversymbSetSize);
 		}
 		else if(input == "Client bereit"){
@@ -54,10 +55,6 @@ public:
 			string tempstring = input.substr(8,input.length());
 			std::cout <<"Password read from string:" << tempstring << std::endl;
 			ReturnValue = password->input(tempstring);
-		}
-		else if(input == "DELETECURPWD"){
-			delete password;
-			ReturnValue = "Deleted password";
 		}
 		else{
 			ReturnValue = "Error";
