@@ -10,14 +10,14 @@
 ### Client
 * [X] Send data from client to server
 * [X] Tell server to generate password of specified lenght and specified characters
-* [ ] Generate password on client
-* [ ] Send password to server until passwords match
-* [ ] Counter for the amount of tries
+* [X] Generate password on client
+* [X] Send password to server until passwords match
+* [X] Counter for the amount of tries
 ### Server
 * [X] Get responses from server
 * [X] Generate random encrypted password with sepcified lenght and characters
 * [X] Check if passwords match and send response back to client
-* [ ] Delete current password
+* [X] Delete current password
 
 ### General
 * [ ] Documentation
