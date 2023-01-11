@@ -19,6 +19,7 @@
 
 #include "SIMPLESOCKET.H"
 #include "TASK1.H"
+#include "SHA256.H"
 using namespace std;
 #include <iostream>
 #include <string>
@@ -30,22 +31,23 @@ public:
 	myServer(int port , int size) : TCPserver(port, size)
 	{
 		password = new TASK1::BlackBoxSafe(4, 4);
+		std::cout << "Constructor Password:" << password->pwd_ << std::endl;
 	};
 	TASK1::BlackBoxSafe* password;
 	string myResponse(string input)
 	{
-		int serverpwdLength;
-		int serversymbSetSize;
+		int serverpwdLength = 4;
+		int serversymbSetSize = 1;
 		string ReturnValue;
 		stringstream serverResponse;
-		std::cout << "Triggered the myServer" << std::endl;
+		//std::cout << "Triggered the myServer" << std::endl;
 
 
 		if(input.compare(0,8,"GENERATE") == 0){
-			sscanf(input.c_str(), "GENERATE[%i,%i]", &serverpwdLength,&serversymbSetSize);
+			delete password;
+			//sscanf(input.c_str(), "GENERATE[%i,%i]", &serverpwdLength,&serversymbSetSize);
 			serverResponse << "Passwort generiert.\nPasswortlänge: " << serverpwdLength << "\n" << "Symbolzahl: " << serversymbSetSize;
 			ReturnValue = serverResponse.str();
-			delete password;
 			password = new TASK1::BlackBoxSafe(serverpwdLength, serversymbSetSize);
 		}
 		else if(input == "Client bereit"){
@@ -54,6 +56,8 @@ public:
 		else if(input.compare(0,8,"CHECKPWD") == 0){
 			string tempstring = input.substr(8,input.length());
 			std::cout <<"Password read from string:" << tempstring << std::endl;
+			std::cout <<"Current Encrypted Password of Server:" << password->pwd_ << std::endl; //Test
+			std::cout <<"       Received Password (Encrypted):" << sha256(tempstring)<< std::endl; //Test
 			ReturnValue = password->input(tempstring);
 		}
 		else{

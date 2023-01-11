@@ -35,9 +35,9 @@ int main() {
 	cout << "got response:" << msg << endl;
 	sleep(1);
 
-	for(int i=0; i<4; i++){
+	for(int i=0; i<8; i++){
 
-		if(msg == "Server bereit" || msg.compare(0,14, "ACCESS ACCEPTED") == 0){
+		if(msg == "Server bereit" || msg.compare(0,15, "ACCESS ACCEPTED") == 0){
 
 			clientRequest << "GENERATE[" << pwdLength << "," << symbSetSize << "]";
 			msg = clientRequest.str();
@@ -49,8 +49,8 @@ int main() {
 			cout << "got response:" << msg << endl;
 			sleep(1);
 		}
-		else if(msg.compare(0,17,"Passwort generiert") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0){
-			TASK1::BlackBoxUnsafe Testpwd(pwdLength, symbSetSize);
+		else if(msg.compare(0,19,"Passwort generiert.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0){
+			TASK1::BlackBoxUnsafe Testpwd(pwdLength, symbSetSize); //This needs to be in new //Mattis
 
 			clientRequest << "CHECKPWD" << Testpwd.pwd_;//First message(CHECKPWD) tells server to check pwd, every other Symbol is the PWD
 			msg = clientRequest.str();
@@ -58,6 +58,7 @@ int main() {
 
 			cout << "client sends:" << msg << endl;
 			c.sendData(msg);
+			//delete Testpwd;
 			msg = c.receive(128);
 			cout << "got response:" << msg << endl;
 			counter++;
