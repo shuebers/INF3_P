@@ -4,6 +4,7 @@
  *  Created on: 11.09.2019
  *      Author: aml
  */
+
 #include <cstdio> // standard input and output library
 #include <cstdlib> // this includes functions regarding memory allocation
 #include <cstring> // contains string functions
@@ -24,7 +25,19 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include <sstream>
-
+/*! 
+ *  \brief     myServer is a class that generates random password on given perimeters.
+ *  \details   This class generates passwords using the SHA256 encryption on given perimeters.
+ * 				It can compare a given password with the generated password thus making it secure.
+ *  \author    Mattis Tornede
+ *  \author    Simon Huebers
+ *  \version   1.0
+ *  \date      2023
+ *  \pre       Needs client.C to check passwords.
+ *  \bug       Port sometimes isnt freed after closing.
+ *  \warning   No warning needed :)
+ *  \copyright GNU Public License.
+ */
 class myServer : public TCPserver{
 public:
 	
@@ -37,7 +50,7 @@ public:
 	string myResponse(string input)
 	{
 		int serverpwdLength = 4;
-		int serversymbSetSize = 1;
+		int serversymbSetSize = 20;
 		string ReturnValue;
 		stringstream serverResponse;
 		//std::cout << "Triggered the myServer" << std::endl;
@@ -68,9 +81,19 @@ public:
 };
 
 
-int main(){
-	srand(time(nullptr));
-	myServer ms(2022, 25);
+int main(int argc, char *argv[]){
+	
+	int port;
+	if(argc != 2){
+		cout << "server port number missing." << endl;
+		exit(0);
+	}
+	port = atoi(argv[1]);
+	cout << "server used port number: " << port << endl;
+
+
+	srand(time(nullptr) + 25); //+25 to have different random values between client and server
+	myServer ms(port, 25);
 	ms.run();
 
 	//TASK1::BlackBoxUnsafe bs(4,4);

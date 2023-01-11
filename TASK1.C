@@ -50,7 +50,7 @@ string BlackBoxUnsafe::randomPwd(int l){
 		symbolIdx = rand() % lengthSymbArray_;
 		pwd_ += charSymbArray_[symbolIdx];
 	}
-	cout << "For debug this is the password: " << pwd_ << endl;
+	//cout << "For debug this is the password: " << pwd_ << endl;
 	return pwd_;
 }
 
