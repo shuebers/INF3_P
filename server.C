@@ -67,7 +67,7 @@ public:
 			ReturnValue = "Server bereit"; //Server bereit
 		}
 		else if(input.compare(0,8,"CHECKPWD") == 0){
-			string tempstring = input.substr(8,input.length());
+			string tempstring = input.substr(8,serverpwdLength);
 			std::cout <<"Password read from string:" << tempstring << std::endl;
 			std::cout <<"Current Encrypted Password of Server:" << password->pwd_ << std::endl; //Test
 			std::cout <<"       Received Password (Encrypted):" << sha256(tempstring)<< std::endl; //Test

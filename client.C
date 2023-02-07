@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
 		}
 
 		else if(pwdAlgorithm == "-r" && (msg.compare(0,19,"Passwort generiert.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0)){
-			Testpwd = new TASK1::BlackBoxUnsafe(pwdLength, symbSetSize); //This needs to be in new //Mattis
+			Testpwd = new TASK1::BlackBoxUnsafe(pwdLength, symbSetSize);
 
 
 			clientRequest << "CHECKPWD" << Testpwd->pwd_;//First message(CHECKPWD) tells server to check pwd, every other Symbol is the PWD
