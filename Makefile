@@ -2,8 +2,8 @@ CC=g++
 
 #CFLAGS=$(shell pkg-config --cflags opencv) 
 #LIBS=$(shell pkg-config --libs opencv) 
-
-OBJS= main.o  TASK1.o TASK2.o TASK3.o TASK4.o SHA256.o SIMPLESOCKET.o
+#deleted OBJS TASK2.o TASK3.o TASK4.o
+OBJS= main.o  TASK1.o  SHA256.o SIMPLESOCKET.o
 DEMOTARGET=main server client 
 
 client.o:	client.C
@@ -21,17 +21,17 @@ SHA256.o:	SHA256.C
 TASK1.o:	TASK1.C
 	$(CC) -c $<  -std=c++11
 
-TASK2.o:	TASK2.C
-	$(CC) -c $<  -std=c++11
+#TASK2.o:	TASK2.C
+#	$(CC) -c $<  -std=c++11
 
-TASK3.o:	TASK3.C
-	$(CC) -c $<  -std=c++11
+#TASK3.o:	TASK3.C
+#	$(CC) -c $<  -std=c++11
 
-TASK4.o:	TASK4.C
-	$(CC) -c $<  -std=c++11 
+#TASK4.o:	TASK4.C
+#	$(CC) -c $<  -std=c++11 
 
-TASK5.o:	TASK5.C
-	$(CC) -c $<  -std=c++11 
+#TASK5.o:	TASK5.C
+#	$(CC) -c $<  -std=c++11 
 
 main.o:	main.C
 	$(CC) -c $<  -std=c++11	
