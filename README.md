@@ -19,8 +19,15 @@
 * [X] Check if passwords match and send response back to client
 * [X] Delete current password
 
-### General
-* [ ] Documentation
+### Documentation
+* [ ] Header with team details
+* [ ] Task
+* [ ] Link to git
+* [ ] Description of program
+* [ ] UML
+* [ ] Net protocol chart
+* [ ] Programm testing with charts
+* [ ] Evaluation of testing
 
 #### Credits:
 Source code for **INFORMATIK 3 PROJEKT** by **SIMON & MATTIS**
