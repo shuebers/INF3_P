@@ -5,6 +5,15 @@
  *      Author: aml
  */
 
+/**
+ *
+ * \file client.C
+ *
+ * \brief Contains the code to generate and crack passwords
+ * on a server
+ *
+ */
+
 #include <string>
 #include <iostream>
 #include <unistd.h> //contains various constants
@@ -48,8 +57,8 @@ int main(int argc, char *argv[]) {
 	string host = "localhost";
 	string msg;
 	stringstream clientRequest;
-	int pwdLength = 4;
-	int symbSetSize = 4;
+	int pwdLength = 6;
+	int symbSetSize = 3;
 	int generatedPasswords = 50;
 	int counter = 0;
 	int guessedcounter = 0;
@@ -62,7 +71,7 @@ int main(int argc, char *argv[]) {
 	c.sendData(msg);
 	msg = c.receive(128);
 	cout << "got response:" << msg << endl;
-	//sleep(1);
+	sleep(1);
 
 	while(guessedcounter < generatedPasswords){
 
@@ -77,7 +86,6 @@ int main(int argc, char *argv[]) {
 			msg = c.receive(128);
 			cout << "got response:" << msg << endl << endl;
 			counter = 0;
-			//sleep(1);
 		}
 
 		else if(pwdAlgorithm == "-r" && (msg.compare(0,19,"Passwort generiert.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0)){
@@ -99,7 +107,6 @@ int main(int argc, char *argv[]) {
 				guessedcounter++;
 			}
 
-			//sleep(1);
 		}
 
 		else if(pwdAlgorithm == "-s" && (msg == "Server bereit" || msg.compare(0,15, "ACCESS ACCEPTED") == 0)){
@@ -113,7 +120,6 @@ int main(int argc, char *argv[]) {
 			msg = c.receive(128);
 			cout << "got response:" << msg << endl << endl;
 			Syspwd = firstPassword(pwdLength);
-			//sleep(1);
 			counter = 0;
 		}
 
@@ -147,7 +153,6 @@ int main(int argc, char *argv[]) {
 			c.sendData(msg);
 			msg = c.receive(128);
 			cout << "got response:" << msg << endl << endl;
-			//sleep(1);
 		}
 
 	}
@@ -177,7 +182,13 @@ int main(int argc, char *argv[]) {
 	cout << "Mean time per password:" << totalguesses/guessedcounter << endl;
 
 }
-
+/**
+ *
+ * \fn firstPassword
+ *
+ * \brief generates the first password of the systematic cracker
+ *
+ */
 string firstPassword(int length){
 	char firstpwd[length];
 	for(int i = 0; i < length; i++)
@@ -186,7 +197,13 @@ string firstPassword(int length){
 	}
 	return firstpwd;
 }
-
+/**
+ *
+ * \fn nextPassword
+ *
+ * \brief generates the next password in line of the systematic cracker
+ *
+ */
 string nextPassword(string oldPassword, int symbSize, int currentPosition)
 {
 	if(currentPosition < 0)

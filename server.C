@@ -5,6 +5,23 @@
  *      Author: aml
  */
 
+/*! 
+ *
+ * \file 	  server.C
+ * 
+ * \brief     Contains the code that generates random encrypted passwords 
+ * on given perimeters and compares them to given passwords.
+ * 
+ * \details   This class generates passwords using the SHA256 encryption on given perimeters.
+ * 				It can compare a given password with the generated password thus making it secure.
+ * \author    Mattis Tornede
+ * \author    Simon Huebers
+ * \version   1.2
+ * \date      2023
+ * \pre       Needs client.C to check passwords.
+ * \bug       Port sometimes isnt freed after closing.
+ * \copyright GNU Public License.
+ */
 #include <cstdio> // standard input and output library
 #include <cstdlib> // this includes functions regarding memory allocation
 #include <cstring> // contains string functions
@@ -25,35 +42,47 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include <sstream>
-/*! 
- *  \brief     myServer is a class that generates random password on given perimeters.
- *  \details   This class generates passwords using the SHA256 encryption on given perimeters.
- * 				It can compare a given password with the generated password thus making it secure.
- *  \author    Mattis Tornede
- *  \author    Simon Huebers
- *  \version   1.0
- *  \date      2023
- *  \pre       Needs client.C to check passwords.
- *  \bug       Port sometimes isnt freed after closing.
- *  \warning   No warning needed :)
- *  \copyright GNU Public License.
+/**
+ *
+ * \class myServer
+ *
+ * \brief Implements a server that generates random encrypted passwords
+ * 	and can compare it to given passwords
+ *
  */
 class myServer : public TCPserver{
 public:
-	
+	/**
+	 *
+	 * \brief Constructor of myServer
+	 *
+	 * \param port defines the port on which you can connect to the server.
+	 *
+	 * \param size defines the max datasize of a command.
+	 *
+	 */
 	myServer(int port , int size) : TCPserver(port, size)
 	{
 		password = new TASK1::BlackBoxSafe(4, 4);
-		std::cout << "Constructor Password:" << password->pwd_ << std::endl;
 	};
+
 	TASK1::BlackBoxSafe* password;
+
+	/**
+	 *
+	 * \brief Response of the server to given commands.
+	 *
+	 * \param input is the input for command that the server reads.
+	 *
+	 * \return string containing the response of the server.
+	 *
+	 */
 	string myResponse(string input)
 	{
-		int serverpwdLength = 4;
-		int serversymbSetSize = 20;
+		int serverpwdLength ;
+		int serversymbSetSize ;
 		string ReturnValue;
 		stringstream serverResponse;
-		//std::cout << "Triggered the myServer" << std::endl;
 
 
 		if(input.compare(0,8,"GENERATE") == 0){
@@ -84,8 +113,12 @@ public:
 int main(int argc, char *argv[]){
 	
 	int port;
-	if(argc != 2){
-		cout << "server port number missing." << endl;
+	if(argc < 2){
+		cout << "Server port number missing. \nPossible commands: ./server [port]" << endl;
+		exit(0);
+	}
+	if(argc > 2){
+		cout << "Too many arguments. \nPossible commands: ./server [port]" << endl;
 		exit(0);
 	}
 	port = atoi(argv[1]);
@@ -96,8 +129,4 @@ int main(int argc, char *argv[]){
 	myServer ms(port, 25);
 	ms.run();
 
-	//TASK1::BlackBoxUnsafe bs(4,4);
-	//std::cout << bs.pwd_ << std::endl;
-	//TCPserver srv(2022,25);
-	//srv.run();
 }

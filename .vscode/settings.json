@@ -6,6 +6,8 @@
         "SIMPLESOCKET.C": "cpp",
         "TASK1.C": "cpp",
         "TASK2.C": "cpp",
-        "TASK5.C": "cpp"
+        "TASK5.C": "cpp",
+        "client.C": "cpp",
+        "mainTest.C": "cpp"
     }
 }
