@@ -23,8 +23,8 @@
 * [ ] Header with team details
 * [ ] Task
 * [ ] Link to git
-* [ ] Description of program
-* [ ] UML
+* [X] Description of program
+* [X] UML
 * [ ] Net protocol chart
 * [ ] Programm testing with charts
 * [ ] Evaluation of testing
