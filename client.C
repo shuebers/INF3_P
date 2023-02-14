@@ -31,24 +31,67 @@ int main(int argc, char *argv[]) {
 	
 	int port;
 	string pwdAlgorithm;
+	int pwdLength;
+	int symbSetSize;
+
 	if(argc < 2){
-		cout << "client port number missing." << endl;
+		cout << "Client port number missing." << endl;
 		exit(0);
 	}
-	if(argc > 3){
+	else if(argc < 3){
+		cout << "Length of password missing." << endl;
+		exit(0);
+	}
+	else if(argc < 4){
+		cout << "Size of alphabet missing." << endl;
+		exit(0);
+	}
+	else if(argc < 5){
+			cout << "Method of password generation missing." << endl;
+			exit(0);
+		}
+	else if(argc > 5){
 		cout << "too many arguments." << endl;
 		exit(0);
 	}
 	port = atoi(argv[1]);
-	cout << "client used port number: " << port << endl << endl;
+	cout << "client used port number: " << port << endl;
 
-	pwdAlgorithm = argv[2];
+	pwdLength = atoi(argv[2]);
+	if(pwdLength < 4){
+		cout << "password needs to be at least 4 symbols long." << endl;
+		exit(0);
+	}
+	if(pwdLength > 7){
+			cout << "password can only be 7 symbols long." << endl;
+			exit(0);
+		}
+
+	symbSetSize = atoi(argv[3]);
+
+	if(symbSetSize < 1){
+			cout << "Size of Alphabet needs to be at least 1." << endl;
+			exit(0);
+		}
+	if(symbSetSize > TASK1::SYMBOLS.length()){
+			cout << "Size of alphabet is limited to " << TASK1::SYMBOLS.length() << " symbols." << endl;
+			exit(0);
+		}
+
+	pwdAlgorithm = argv[4];
 	if(pwdAlgorithm == "-r"){
 		cout << "Using random password generation" << endl << endl;
 	}
 	else if(pwdAlgorithm == "-s"){
 		cout << "Using systematic password generation" << endl << endl;
 	}
+	else{
+		cout << "Use '-r' for random password generation or '-s' for systematic password generation!" << endl;
+		exit(0);
+	}
+
+	cout << "Length of password: " << pwdLength << endl;
+	cout << "Size of Alphabet used: " << symbSetSize << endl << endl;
 
 	TASK1::BlackBoxUnsafe* Testpwd;
 
@@ -57,9 +100,7 @@ int main(int argc, char *argv[]) {
 	string host = "localhost";
 	string msg;
 	stringstream clientRequest;
-	int pwdLength = 6;
-	int symbSetSize = 3;
-	int generatedPasswords = 50;
+	int generatedPasswords = 5;
 	int counter = 0;
 	int guessedcounter = 0;
 	int attempts[generatedPasswords];
@@ -81,10 +122,10 @@ int main(int argc, char *argv[]) {
 			msg = clientRequest.str();
 			clientRequest.str("");//Clearing the stringstream for further use
 
-			cout << "client sends:" << msg << endl;
+			//cout << "client sends:" << msg << endl;
 			c.sendData(msg);
 			msg = c.receive(128);
-			cout << "got response:" << msg << endl << endl;
+			//cout << "got response:" << msg << endl << endl;
 			counter = 0;
 		}
 
@@ -96,11 +137,11 @@ int main(int argc, char *argv[]) {
 			msg = clientRequest.str();
 			clientRequest.str("");//Clearing the stringstream for further use
 
-			cout << "client sends:" << msg << endl;
+			//cout << "client sends:" << msg << endl;
 			c.sendData(msg);
 			delete Testpwd;
 			msg = c.receive(128);
-			cout << "got response:" << msg << endl << endl;
+			//cout << "got response:" << msg << endl << endl;
 			counter++;
 			if(msg.compare(0,15, "ACCESS ACCEPTED") == 0){
 				attempts[guessedcounter] = counter;
@@ -121,6 +162,8 @@ int main(int argc, char *argv[]) {
 			cout << "got response:" << msg << endl << endl;
 			Syspwd = firstPassword(pwdLength);
 			counter = 0;
+
+			sleep(5);
 		}
 
 
@@ -131,7 +174,6 @@ int main(int argc, char *argv[]) {
 
 			cout << "client sends:" << msg << endl;
 			c.sendData(msg);
-			//delete Testpwd;
 			msg = c.receive(128);
 			cout << "got response:" << msg << endl << endl;
 
@@ -143,7 +185,7 @@ int main(int argc, char *argv[]) {
 				guessedcounter++;
 			}
 
-			//sleep(1);
+			sleep(5);
 		}
 
 		else{
@@ -160,7 +202,7 @@ int main(int argc, char *argv[]) {
 
 	c.sendData("BYEBYE");
 	msg = c.receive(128);
-	cout << "got response:" << msg << endl;
+	cout << "got response:" << msg << endl << endl;
 	if(pwdAlgorithm == "-r"){
 			cout << "Using random password generation" << endl << endl;
 	}
@@ -169,10 +211,15 @@ int main(int argc, char *argv[]) {
 			cout << "Using systematic password generation" << endl << endl;
 	}
 
+	cout << "Length of passwords:" << pwdLength << endl;
+	cout << "Size of alphabet used:" << symbSetSize << endl;
 	cout << "amount of guessed passwords:" << guessedcounter << endl << endl;
 	for(int i = 0; i < generatedPasswords; i++){
-		cout << "Benötigte Versuche für Passwort Nummer " << i+1 << ": " << attempts[i] << endl;
+		cout << "Attempts needed to crack password number " << i+1 << ": " << attempts[i] << endl;
 	}
+	for(int i = 0; i < generatedPasswords; i++){
+			cout << attempts[i] << endl;
+		}
 	cout << endl;
 	int totalguesses = 0;
 	for(int i = 0; i < generatedPasswords; i++){
