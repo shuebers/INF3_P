@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
 	c.sendData(msg);
 	msg = c.receive(128);
 	cout << "got response:" << msg << endl;
-	sleep(1);
+	sleep(4);
 
 	while(guessedcounter < generatedPasswords){
 
@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
 			Syspwd = firstPassword(pwdLength);
 			counter = 0;
 
-			sleep(5);
+			//sleep(5);
 		}
 
 
@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
 				guessedcounter++;
 			}
 
-			sleep(5);
+			//sleep(5);
 		}
 
 		else{

@@ -92,14 +92,14 @@ public:
 			ReturnValue = serverResponse.str();
 			password = new TASK1::BlackBoxSafe(serverpwdLength, serversymbSetSize);
 		}
-		else if(input == "Client ready"){
-			ReturnValue = "Server ready"; //Server bereit
+		else if(input.compare(0,12,"Client ready")==0){
+			ReturnValue = "Server ready"; //Server ready for input
 		}
 		else if(input.compare(0,8,"CHECKPWD") == 0){
 			string tempstring = input.substr(8,serverpwdLength);
-			std::cout <<"Password read from string:" << tempstring << std::endl;
-			std::cout <<"Current Encrypted Password of Server:" << password->pwd_ << std::endl; //Test
-			std::cout <<"       Received Password (Encrypted):" << sha256(tempstring)<< std::endl; //Test
+			//std::cout <<"Password read from string:" << tempstring << std::endl;
+			//std::cout <<"Current Encrypted Password of Server:" << password->pwd_ << std::endl; //Test
+			//std::cout <<"       Received Password (Encrypted):" << sha256(tempstring)<< std::endl; //Test
 			ReturnValue = password->input(tempstring);
 		}
 		else{
