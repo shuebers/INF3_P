@@ -25,9 +25,9 @@
 * [ ] Link to git
 * [X] Description of program
 * [X] UML
-* [ ] Net protocol chart
+* [X] Net protocol chart
 * [ ] Programm testing with charts
 * [ ] Evaluation of testing
 
 #### Credits:
-Source code for **INFORMATIK 3 PROJEKT** by **SIMON & MATTIS**
+Source code for **INFORMATIK 3 PROJEKT** by **SIMON H. & MATTIS T.**
