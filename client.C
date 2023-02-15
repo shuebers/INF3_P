@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
 	string Syspwd("");
 	//connect to host
 	c.conn(host , port);
-	msg = "Client bereit";
+	msg = "Client ready";
 	cout << "client sends:" << msg << endl;
 	c.sendData(msg);
 	msg = c.receive(128);
@@ -116,7 +116,7 @@ int main(int argc, char *argv[]) {
 
 	while(guessedcounter < generatedPasswords){
 
-		if(pwdAlgorithm == "-r" && (msg == "Server bereit" || msg.compare(0,15, "ACCESS ACCEPTED") == 0)){
+		if(pwdAlgorithm == "-r" && (msg == "Server ready" || msg.compare(0,15, "ACCESS ACCEPTED") == 0)){
 
 			clientRequest << "GENERATE[" << pwdLength << "," << symbSetSize << "]";
 			msg = clientRequest.str();
@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
 			counter = 0;
 		}
 
-		else if(pwdAlgorithm == "-r" && (msg.compare(0,19,"Passwort generiert.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0)){
+		else if(pwdAlgorithm == "-r" && (msg.compare(0,19,"Passwort generated.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0)){
 			Testpwd = new TASK1::BlackBoxUnsafe(pwdLength, symbSetSize);
 
 
@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
 
 		}
 
-		else if(pwdAlgorithm == "-s" && (msg == "Server bereit" || msg.compare(0,15, "ACCESS ACCEPTED") == 0)){
+		else if(pwdAlgorithm == "-s" && (msg == "Server ready" || msg.compare(0,15, "ACCESS ACCEPTED") == 0)){
 
 			clientRequest << "GENERATE[" << pwdLength << "," << symbSetSize << "]";
 			msg = clientRequest.str();
@@ -167,7 +167,7 @@ int main(int argc, char *argv[]) {
 		}
 
 
-		else if(pwdAlgorithm == "-s" && (msg.compare(0,19,"Passwort generiert.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0)){
+		else if(pwdAlgorithm == "-s" && (msg.compare(0,19,"Passwort generated.") == 0 || msg.compare(0,13, "ACCESS DENIED") == 0)){
 			clientRequest << "CHECKPWD" << Syspwd;
 			msg = clientRequest.str();
 			clientRequest.str("");//Clearing the stringstream for further use

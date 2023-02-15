@@ -88,12 +88,12 @@ public:
 		if(input.compare(0,8,"GENERATE") == 0){
 			delete password;
 			sscanf(input.c_str(), "GENERATE[%i,%i]", &serverpwdLength,&serversymbSetSize);
-			serverResponse << "Passwort generiert.\nPasswortlänge: " << serverpwdLength << "\n" << "Symbolzahl: " << serversymbSetSize;
+			serverResponse << "Passwort generated.\nPasswortlaenge: " << serverpwdLength << "\n" << "Symbolzahl: " << serversymbSetSize;
 			ReturnValue = serverResponse.str();
 			password = new TASK1::BlackBoxSafe(serverpwdLength, serversymbSetSize);
 		}
-		else if(input == "Client bereit"){
-			ReturnValue = "Server bereit"; //Server bereit
+		else if(input == "Client ready"){
+			ReturnValue = "Server ready"; //Server bereit
 		}
 		else if(input.compare(0,8,"CHECKPWD") == 0){
 			string tempstring = input.substr(8,serverpwdLength);
