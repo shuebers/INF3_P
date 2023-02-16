@@ -62,8 +62,8 @@ int main(int argc, char *argv[]) {
 		cout << "password needs to be at least 4 symbols long." << endl;
 		exit(0);
 	}
-	if(pwdLength > 7){
-			cout << "password can only be 7 symbols long." << endl;
+	if(pwdLength > 10){
+			cout << "password can only be 10 symbols long." << endl;
 			exit(0);
 		}
 
@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
 	string host = "localhost";
 	string msg;
 	stringstream clientRequest;
-	int generatedPasswords = 5;
+	int generatedPasswords = 50;
 	int counter = 0;
 	int guessedcounter = 0;
 	int attempts[generatedPasswords];
@@ -172,10 +172,10 @@ int main(int argc, char *argv[]) {
 			msg = clientRequest.str();
 			clientRequest.str("");//Clearing the stringstream for further use
 
-			cout << "client sends:" << msg << endl;
+			//cout << "client sends:" << msg << endl;
 			c.sendData(msg);
 			msg = c.receive(128);
-			cout << "got response:" << msg << endl << endl;
+			//cout << "got response:" << msg << endl << endl;
 
 			counter++;
 			Syspwd = nextPassword(Syspwd, symbSetSize, pwdLength-1);
