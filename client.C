@@ -156,10 +156,10 @@ int main(int argc, char *argv[]) {
 			msg = clientRequest.str();
 			clientRequest.str("");//Clearing the stringstream for further use
 
-			cout << "client sends:" << msg << endl;
+			//cout << "client sends:" << msg << endl;
 			c.sendData(msg);
 			msg = c.receive(128);
-			cout << "got response:" << msg << endl << endl;
+			//cout << "got response:" << msg << endl << endl;
 			Syspwd = firstPassword(pwdLength);
 			counter = 0;
 
@@ -237,10 +237,10 @@ int main(int argc, char *argv[]) {
  *
  */
 string firstPassword(int length){
-	char firstpwd[length];
+	string firstpwd = "";
 	for(int i = 0; i < length; i++)
 	{
-		firstpwd[i] = TASK1::SYMBOLS[0];
+		firstpwd = firstpwd + TASK1::SYMBOLS[0];
 	}
 	return firstpwd;
 }
