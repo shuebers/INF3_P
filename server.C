@@ -88,7 +88,7 @@ public:
 		if(input.compare(0,8,"GENERATE") == 0){
 			delete password;
 			sscanf(input.c_str(), "GENERATE[%i,%i]", &serverpwdLength,&serversymbSetSize);
-			serverResponse << "Passwort generated.\nPasswortlaenge: " << serverpwdLength << "\n" << "Symbolzahl: " << serversymbSetSize;
+			serverResponse << "Passwort generated.\nlength of password: " << serverpwdLength << "\n" << "size of alphabet used: " << serversymbSetSize;
 			ReturnValue = serverResponse.str();
 			password = new TASK1::BlackBoxSafe(serverpwdLength, serversymbSetSize);
 		}
