@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 	symbSetSize = atoi(argv[3]);
 
 	if(symbSetSize < 1){
-			cout << "Size of Alphabet needs to be at least 1." << endl;
+			cout << "Size of Alphabet needs to be at least 1 symbol." << endl;
 			exit(0);
 		}
 	if(symbSetSize > TASK1::SYMBOLS.length()){
@@ -108,11 +108,11 @@ int main(int argc, char *argv[]) {
 	//connect to host
 	c.conn(host , port);
 	msg = "Client ready";
-	cout << "client sends:" << msg << endl;
+	//cout << "client sends:" << msg << endl;
 	c.sendData(msg);
 	msg = c.receive(128);
-	cout << "got response:" << msg << endl;
-	sleep(4);
+	//cout << "got response:" << msg << endl;
+	//sleep(4);
 
 	while(guessedcounter < generatedPasswords){
 
@@ -162,8 +162,6 @@ int main(int argc, char *argv[]) {
 			//cout << "got response:" << msg << endl << endl;
 			Syspwd = firstPassword(pwdLength);
 			counter = 0;
-
-			//sleep(5);
 		}
 
 
@@ -217,9 +215,6 @@ int main(int argc, char *argv[]) {
 	for(int i = 0; i < generatedPasswords; i++){
 		cout << "Attempts needed to crack password number " << i+1 << ": " << attempts[i] << endl;
 	}
-	for(int i = 0; i < generatedPasswords; i++){
-			cout << attempts[i] << endl;
-		}
 	cout << endl;
 	int totalguesses = 0;
 	for(int i = 0; i < generatedPasswords; i++){
@@ -276,7 +271,7 @@ string nextPassword(string oldPassword, int symbSize, int currentPosition)
 	}
 	if(index == TASK1::SYMBOLS.length())
 	{
-		index = index-1;						//HACK
+		index = index-1;
 	}
  	oldPassword[currentPosition] = TASK1::SYMBOLS[index];
 	return oldPassword;
