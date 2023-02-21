@@ -20,14 +20,14 @@
 * [X] Delete current password
 
 ### Documentation
-* [ ] Header with team details
-* [ ] Task
-* [ ] Link to git
+* [X] Header with team details
+* [X] Task
+* [X] Link to git
 * [X] Description of program
 * [X] UML
 * [X] Net protocol chart
-* [ ] Programm testing with charts
-* [ ] Evaluation of testing
+* [X] Programm testing with charts
+* [X] Evaluation of testing
 
 #### Credits:
 Source code for **INFORMATIK 3 PROJEKT** by **SIMON H. & MATTIS T.**
