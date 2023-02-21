@@ -7,10 +7,10 @@
 4. The clients tries new passwords until it gets the right one. 
 
 ## Manual:
- `Make all` to compile the code
- `Make doc` to make more detailed Doxygen documentation
- `./Server [port]` to open local server on port
- `./Client [port] [pwd_length] [symb_amount] [-s or -r]` connect client programm to server and start password cracking attempts.
+ `Make all` to compile the code.  
+ `Make doc` to make more detailed Doxygen documentation.  
+ `./Server [port]` to open local server on port.  
+ `./Client [port] [pwd_length] [symb_amount] [-s or -r]` connect client programm to server and start password cracking attempts.  
 
 ## Project Goals
 ### Client
