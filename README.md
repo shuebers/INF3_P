@@ -9,8 +9,8 @@
 ## Manual:
  `make all` to compile the code.  
  `make doc` to make more detailed Doxygen documentation.  
- `./Server [port]` to open local server on port.  
- `./Client [port] [pwd_length] [symb_amount] [-s or -r]` connect client programm to server and start password cracking attempts.  
+ `./server [port]` to open local server on port.  
+ `./slient [port] [pwd_length] [symb_amount] [-s or -r]` connect client programm to server and start password cracking attempts.  
 
 ## Project Goals
 ### Client
