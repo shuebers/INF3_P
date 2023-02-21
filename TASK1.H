@@ -102,7 +102,6 @@ protected:
  *
  */
 class BlackBoxSafe : public BlackBoxUnsafe{
-	/// \todo  Implementation of class BlackBoxSafe needs to be finalized.
 public:
 	BlackBoxSafe(int pwdLength, int symbSetSize);
 	virtual string input(string strPwd); 

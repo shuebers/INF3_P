@@ -17,6 +17,6 @@
  * Open a  server by "./server [port]"
   \subsection step2 Starting the Client
   * Start client by "./client [port] [passwordlength] [symb_amount] [-r or -s]"
-  \subsection step3 using auto script
+  \subsection step3 Using auto script
   * You can use the RunSerCli.sh by opening it with "./RunSerCli.sh"
   * Follow the instructions in the console
