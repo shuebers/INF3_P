@@ -4,7 +4,13 @@
 1. A password gets generated and encrypted on a server.  
 2. Then a client sends its unencrypted password to the server.  
 3. The server compares both passwords and sends back if it was the right password.  
-4. The clients tries new passwords until it gets the right one.  
+4. The clients tries new passwords until it gets the right one. 
+
+## Manual:
+1. Make all
+2. Make doc to make ore detailed Doxygen documentation
+3. ./Server [port] to open local server on port
+4. './Client [port] [pwd_length] [symb_amount] [-s or -r]' connect clent programm to server
 
 ## Project Goals
 ### Client
